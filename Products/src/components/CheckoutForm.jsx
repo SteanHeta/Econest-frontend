@@ -1,5 +1,3 @@
-// ====== FILE: src/components/CheckoutForm.jsx ======
-
 import React, { useState } from 'react';
 import { useCart } from '../context/CartContext';
 
@@ -24,7 +22,6 @@ const CheckoutForm = () => {
             return;
         }
 
-        // Here you would typically send this data to your backend
         const orderData = {
             customer: billingDetails,
             items: cartItems.map(item => ({ id: item.product.id, quantity: item.quantity })),
@@ -37,7 +34,6 @@ const CheckoutForm = () => {
         
         alert(`Thank you for your order, ${billingDetails.name}! A confirmation has been sent to ${billingDetails.email}.`);
         
-        // Clear the cart after successful "checkout"
         clearCart();
     };
 
