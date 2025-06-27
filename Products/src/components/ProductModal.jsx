@@ -1,5 +1,3 @@
-// ====== FILE: src/components/ProductModal.jsx (Corrected) ======
-
 import React from 'react';
 
 const CloseIcon = () => (<svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>);
@@ -51,7 +49,6 @@ const ProductModal = ({ product, onClose, onAddToCart }) => {
                                     <section className="mt-6">
                                         <h3 className="text-sm font-medium text-gray-900">Features</h3>
                                         <div className="mt-2 flex flex-wrap gap-2">
-                                            {/* FIX: Add Array.isArray check to prevent crash if data is not an array */}
                                             {Array.isArray(product.labels) && product.labels.map((label) => <span key={label} className="rounded-md bg-gray-100 px-2 py-1 text-xs font-medium text-gray-800">{label}</span>)}
                                             {Array.isArray(product.features) && product.features.map((feature) => <span key={feature} className="rounded-md bg-green-100 px-2 py-1 text-xs font-medium text-green-800">{feature}</span>)}
                                         </div>
