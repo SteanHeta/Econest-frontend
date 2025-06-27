@@ -1,8 +1,5 @@
-// ====== FILE: src/components/ProductCard.jsx (Final Design Update) ======
-
 import React, { useState } from 'react';
 
-// --- Icons (no changes needed) ---
 const ImagePlaceholderIcon = () => (<svg className="h-12 w-12 text-gray-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5z"/></svg>);
 const HeartIcon = () => (<svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>);
 const LocationPinIcon = () => (<svg className="h-4 w-4 text-gray-400" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M9.69 18.933l.003.001C9.89 19.02 10 19 10 19s.11.02.308-.066l.002-.001.006-.003.018-.008a5.741 5.741 0 00.281-.14c.186-.1.4-.27.61-.47.21-.2.4-.41.56-.63.17-.22.32-.45.46-.69.13-.24.25-.49.35-.75.1-.26.18-.52.25-.79.07-.27.12-.55.16-.83.04-.28.06-.56.07-.85.01-.29.01-.58.01-.87v-1.12a5.25 5.25 0 00-10.5 0v1.12c0 .29 0 .58.01.87.01.29.03.57.07.85.04-.28.09.56.16.83.07-.27.13.55.25.79.1.26.22.51.35.75.14.24.29.47.46.69.16.22.35.43.56.63.21.2.42.37.61.47.1.07.21.12.28.14l.018.008.006.003zM10 8.25a2.25 2.25 0 100 4.5 2.25 2.25 0 000-4.5z" clipRule="evenodd"/></svg>);
@@ -14,7 +11,6 @@ const ProductCard = ({ product, onAddToCart, onCardClick }) => {
 
     if (!product) return null;
 
-    // DESIGN FIX: Use the first 'feature' for the prominent top badge.
     const mainFeature = product.features && product.features.length > 0 ? product.features[0] : null;
 
     const handleWishlistClick = (e) => {
@@ -31,7 +27,6 @@ const ProductCard = ({ product, onAddToCart, onCardClick }) => {
         <div onClick={() => onCardClick(product)} className="group flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white p-2.5 shadow-sm transition-shadow hover:shadow-lg cursor-pointer">
             <div className="relative">
                 <div className="aspect-square w-full rounded-lg bg-gray-100 flex items-center justify-center">
-                    {/* The image will now be displayed correctly. */}
                     {product.imageUrl ? (
                         <img src={product.imageUrl} alt={product.name} className="h-full w-full object-cover"/>
                     ) : (
@@ -39,8 +34,6 @@ const ProductCard = ({ product, onAddToCart, onCardClick }) => {
                     )}
                 </div>
                 
-
-                {/* This renders the main feature badge, like "Vegan" */}
                 {mainFeature && (
                     <div className="absolute top-2.5 left-2.5">
                         <span className="rounded-full bg-green-600 px-3 py-1 text-xs font-semibold text-white shadow">
@@ -85,7 +78,6 @@ const ProductCard = ({ product, onAddToCart, onCardClick }) => {
                     </div>
                 </div>
                 
-                {/* DESIGN FIX: Use only 'labels' for the bordered bottom tags. */}
                 <div className="mt-3 flex flex-wrap gap-2 border-t border-gray-100 pt-3">
                     {product.labels && product.labels.map((label) => (
                         <span key={label} className="rounded-full border border-gray-300 bg-white px-3 py-1 text-xs font-semibold text-gray-700">
