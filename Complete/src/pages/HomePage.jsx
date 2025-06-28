@@ -21,10 +21,10 @@ const categories = [
 const HomePage = () => {
     return (
         <>
-            <div className="bg-white">
+            <div className="bg-emerald-50">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
                     <div className="text-center">
-                        <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">Discover <span className="text-green-600">Sustainable</span> <span className="text-blue-600">Living</span></h1>
+                        <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">Discover <span className="bg-gradient-to-r from-green-500 via-emerald-500 via-purple-500 via-pink-500 to-blue-500 bg-clip-text text-transparent"> Sustainable <span className="text-blue-600">Living</span></span></h1>
                         <p className="mt-6 text-lg leading-8 text-gray-600 max-w-3xl mx-auto">Connect with eco-friendly brands, discover sustainable products, and join a community committed to making a positive environmental impact.</p>
                         <div className="mt-10 flex items-center justify-center gap-x-6">
                             <Link to="/products" className="rounded-md bg-green-600 px-5 py-3 text-base font-semibold text-white shadow-sm hover:bg-green-700">Shop Products</Link>
@@ -34,7 +34,7 @@ const HomePage = () => {
                 </div>
             </div>
 
-            <div className="bg-white">
+            <div className="bg-green-50">
                 <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
                     <h2 className="text-2xl font-bold tracking-tight text-center text-gray-900 sm:text-3xl">Shop by Category</h2>
                     <div className="mt-12 grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 lg:grid-cols-6 xl:gap-x-8">
