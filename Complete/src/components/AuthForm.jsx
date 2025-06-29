@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../context/AuthContext.jsx'; 
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001'; 
 
 const AuthForm = ({ isRegister = false }) => {
     const [username, setUsername] = useState('');
@@ -25,10 +25,9 @@ const AuthForm = ({ isRegister = false }) => {
             } else {
                 await loginWithEmail(email, password);
             }
-            navigate('/'); 
+            navigate('/');
         } catch (err) {
             console.error("Authentication error:", err);
-     
             if (err.response) {
                 setError(err.response.data.message || 'An error occurred.');
             } else if (err.request) {
@@ -52,7 +51,6 @@ const AuthForm = ({ isRegister = false }) => {
             </h2>
             
             <form onSubmit={handleSubmit} className="mt-8 space-y-6">
-                 {/* The Username field is only shown on the registration form */}
                  {isRegister && (
                     <div>
                         <label htmlFor="username" className="block text-sm font-medium text-gray-700">Username</label>
