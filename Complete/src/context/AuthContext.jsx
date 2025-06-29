@@ -1,3 +1,5 @@
+// src/context/AuthContext.jsx
+
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from 'firebase/auth';
 import { auth } from '../firebase';
@@ -15,7 +17,7 @@ export const AuthProvider = ({ children }) => {
       if (firebaseUser) {
         try {
           const idToken = await firebaseUser.getIdToken();
-          const res = await apiClient.post('/api/auth/google/callback', { idToken });
+          const res = await apiClient.post('/auth/google/callback', { idToken });
           const jwtToken = res.data.access_token;
           localStorage.setItem('econest_token', jwtToken);
           apiClient.defaults.headers.common['Authorization'] = `Bearer ${jwtToken}`;
@@ -73,7 +75,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, loginWithEmail, registerWithEmail, loginWithGoogle, logout, isAuthenticated: !!user }}>
+    <AuthContext.Provider value={{ user, loginWithEmail, registerWithEmail, loginWithGoogle, logout, isAuthenticated: !!user, loading }}>
       {!loading && children}
     </AuthContext.Provider>
   );

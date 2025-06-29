@@ -11,17 +11,18 @@ const apiClient = axios.create({
 
 apiClient.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('econest_token');
     if (token) {
       config.headers['Authorization'] = `Bearer ${token}`;
     }
     return config;
   },
-  (error) => {
-    return Promise.reject(error);
-  }
+  (error) => Promise.reject(error)
 );
 
+export const login = (credentials) => apiClient.post('/auth/login', credentials);
+export const register = (userData) => apiClient.post('/auth/register', userData);
+export const getProfile = () => apiClient.get('/auth/profile');
 
 export const getProducts = () => apiClient.get('/products/');
 export const getBrands = () => apiClient.get('/brands/');
@@ -31,9 +32,5 @@ export const createCommunityPost = (postData) => apiClient.post('/community/post
 
 export const getFeaturedProducts = () => apiClient.get('/home/featured-products');
 export const getLatestPosts = () => apiClient.get('/home/latest-posts');
-
-export const login = (credentials) => apiClient.post('/auth/login', credentials);
-export const register = (userData) => apiClient.post('/auth/register', userData);
-export const getProfile = () => apiClient.get('/auth/profile');
 
 export default apiClient;
