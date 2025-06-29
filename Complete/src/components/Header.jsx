@@ -20,8 +20,7 @@ const Header = () => {
 
   const handleLogout = () => {
     logout();
-    navigate('/');
-    alert("You have been logged out.");
+    navigate('/'); 
   };
 
   const activeLinkClass = "text-sm font-semibold leading-6 text-green-600";
@@ -52,11 +51,11 @@ const Header = () => {
           {isAuthenticated ? (
             <>
               <NavLink to="/profile" className="text-sm font-semibold hover:text-green-700">
-                Welcome, {user ? user.username : 'User'}
+                Welcome, {user ? user.email : 'User'}
               </NavLink>
               <button
                 onClick={handleLogout}
-                className="rounded-md bg-green-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-700"
+                className="rounded-md bg-red-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-700"
               >
                 Logout
               </button>

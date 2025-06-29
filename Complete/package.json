@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "@auth0/auth0-react": "^2.3.0",
+    "@react-oauth/google": "^0.12.2",
     "axios": "^1.10.0",
+    "firebase": "^11.9.1",
     "framer-motion": "^12.19.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"

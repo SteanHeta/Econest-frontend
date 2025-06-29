@@ -1,53 +1,72 @@
-import React, { createContext, useState, useEffect, useContext } from 'react';
-import { getProfile } from '../services/api';
+import React, { createContext, useState, useContext, useEffect } from 'react';
+import { login as apiLogin, register as apiRegister, getProfile } from '../services/api'; 
+import apiClient from '../services/api';
 
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [token, setToken] = useState(localStorage.getItem('token'));
-  const [isAuthenticated, setIsAuthenticated] = useState(!!token);
+  const [token, setTokenState] = useState(localStorage.getItem('econest_token'));
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const validateToken = async () => {
+    const fetchUser = async () => {
       if (token) {
+        apiClient.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         try {
           const response = await getProfile();
           setUser(response.data);
-          setIsAuthenticated(true);
         } catch (error) {
-          console.error('Session expired or invalid token', error);
+          console.error("Token is invalid or expired. Logging out.", error);
           logout();
         }
+      } else {
+        setUser(null);
       }
       setLoading(false);
     };
-    validateToken();
-  }, [token]);
 
-  const loginAction = (newToken) => {
-    localStorage.setItem('token', newToken);
-    setToken(newToken);
-    setIsAuthenticated(true);
+    fetchUser();
+  }, [token]); 
+
+  const setToken = (newToken) => {
+    if (newToken) {
+      localStorage.setItem('econest_token', newToken);
+    } else {
+      localStorage.removeItem('econest_token');
+    }
+    setTokenState(newToken);
+  };
+  
+  const loginWithEmail = async (email, password) => {
+    const response = await apiLogin({ email, password });
+    setToken(response.data.access_token);
+  };
+
+  const registerWithEmail = async (username, email, password) => {
+    await apiRegister({ username, email, password });
+    await loginWithEmail(email, password);
   };
 
   const logout = () => {
-    localStorage.removeItem('token');
     setToken(null);
-    setUser(null);
-    setIsAuthenticated(false);
+    delete apiClient.defaults.headers.common['Authorization'];
   };
 
-  const authContextValue = { token, user, isAuthenticated, loading, loginAction, logout };
+  const authValue = {
+    user,
+    setToken, 
+    loginWithEmail,
+    registerWithEmail,
+    logout,
+    isAuthenticated: !!user, 
+  };
 
   return (
-    <AuthContext.Provider value={authContextValue}>
+    <AuthContext.Provider value={authValue}>
       {!loading && children}
     </AuthContext.Provider>
   );
 };
 
-export const useAuth = () => {
-  return useContext(AuthContext);
-};
+export const useAuth = () => useContext(AuthContext);

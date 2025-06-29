@@ -1,29 +1,28 @@
 import React, { useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import LoadingSpinner from '../components/LoadingSpinner';
 
 const AuthCallbackPage = () => {
-    const [searchParams] = useSearchParams();
-    const navigate = useNavigate();
-    const { loginAction } = useAuth();
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const { setToken } = useAuth();
 
-    useEffect(() => {
-        const token = searchParams.get('token');
-        if (token) {
-            loginAction(token);
-            navigate('/profile');
-        } else {
-            console.error("No token found in callback URL");
-            navigate('/login');
-        }
-    }, [searchParams, loginAction, navigate]);
+  useEffect(() => {
+    const token = searchParams.get('token');
+    if (token) {
+      setToken(token);
+      navigate('/');
+    } else {
+      console.error("Auth callback page reached without a token. Redirecting to login.");
+      navigate('/login');
+    }
+  }, [searchParams, navigate, setToken]);
 
-    return (
-        <div className="text-center p-10">
-            <h2 className="text-xl font-semibold mb-4">Finalizing login...</h2>
-            <LoadingSpinner />
-        </div>
-    );
+  return (
+    <div className="flex items-center justify-center min-h-screen">
+      <p className="text-lg text-gray-600">Finalizing your login...</p>
+    </div>
+  );
 };
+
 export default AuthCallbackPage;
