@@ -41,7 +41,6 @@ const Cart = () => {
 
     return (
         <div className="relative z-50" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
-            {/* Backdrop */}
             <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" onClick={closeCart}></div>
 
             <div className="fixed inset-0 overflow-hidden">

@@ -41,7 +41,7 @@ export const CartProvider = ({ children }) => {
 
     const clearCart = () => {
         setCartItems([]);
-        setIsCartOpen(false); 
+        setIsCartOpen(false);
     };
 
     const openCart = () => setIsCartOpen(true);
@@ -54,7 +54,7 @@ export const CartProvider = ({ children }) => {
     const totalPrice = useMemo(() => {
         return cartItems.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
     }, [cartItems]);
-    
+
     const value = {
         cartItems,
         isCartOpen,

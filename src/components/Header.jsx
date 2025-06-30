@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
-import { useAuth } from '../context/AuthContext'; 
+import { useAuth } from '../context/AuthContext';
 
 const CartIcon = () => (
   <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
@@ -20,7 +20,7 @@ const Header = () => {
 
   const handleLogout = () => {
     logout();
-    navigate('/'); 
+    navigate('/');
   };
 
   const activeLinkClass = "text-sm font-semibold leading-6 text-green-600";

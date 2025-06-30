@@ -31,9 +31,9 @@ const CheckoutForm = () => {
 
         console.log("--- SIMULATING CHECKOUT ---");
         console.log("Order Data:", orderData);
-        
+
         alert(`Thank you for your order, ${billingDetails.name}! A confirmation has been sent to ${billingDetails.email}.`);
-        
+
         clearCart();
     };
 

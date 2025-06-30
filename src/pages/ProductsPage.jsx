@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import ProductCard from '../components/ProductCard';
 import ProductModal from '../components/ProductModal';
@@ -17,7 +16,7 @@ const ProductsPage = () => {
     const [displayedProducts, setDisplayedProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    
+
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
     const [sortKey, setSortKey] = useState('popular');
@@ -30,7 +29,7 @@ const ProductsPage = () => {
         const fetchProducts = async () => {
             try {
                 const response = await getProducts();
-                setAllProducts(response.data); 
+                setAllProducts(response.data);
             } catch (e) {
                 setError("Could not load products. Please check that your backend server is running and try again.");
             } finally {

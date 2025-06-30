@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import { AuthProvider, useAuth } from './context/AuthContext'; 
+import { AuthProvider, useAuth } from './context/AuthContext';
 import { CartProvider } from './context/CartContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -13,6 +13,8 @@ import RegisterPage from './pages/RegisterPage';
 import DashboardPage from './pages/DashboardPage';
 import ProfilePage from './pages/ProfilePage';
 import AuthCallbackPage from './pages/AuthCallbackPage';
+import Cart from './components/Cart';
+
 
 const PrivateRoute = ({ children }) => {
   const { isAuthenticated } = useAuth();
@@ -35,13 +37,13 @@ function App() {
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/register" element={<RegisterPage />} />
                 <Route path="/login/success" element={<AuthCallbackPage />} />
-                <Route 
-                  path="/dashboard" 
-                  element={<PrivateRoute><DashboardPage /></PrivateRoute>} 
+                <Route
+                  path="/dashboard"
+                  element={<PrivateRoute><DashboardPage /></PrivateRoute>}
                 />
-                <Route 
-                  path="/profile" 
-                  element={<PrivateRoute><ProfilePage /></PrivateRoute>} 
+                <Route
+                  path="/profile"
+                  element={<PrivateRoute><ProfilePage /></PrivateRoute>}
                 />
               </Routes>
             </main>
