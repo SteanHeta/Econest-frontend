@@ -45,6 +45,7 @@ function App() {
                 />
               </Routes>
             </main>
+            <Cart/>
             <Footer />
           </div>
         </Router>
