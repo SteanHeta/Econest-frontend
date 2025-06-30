@@ -13,7 +13,6 @@ import RegisterPage from './pages/RegisterPage';
 import DashboardPage from './pages/DashboardPage';
 import ProfilePage from './pages/ProfilePage';
 import AuthCallbackPage from './pages/AuthCallbackPage';
-import Cart from './components/Cart';
 
 
 const PrivateRoute = ({ children }) => {
