@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { CartProvider } from './context/CartContext';
 import Header from './components/Header';
+import Cart from './components/Cart';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import ProductsPage from './pages/ProductsPage';
@@ -46,6 +47,7 @@ function App() {
                 />
               </Routes>
             </main>
+            <Cart />
             <Footer />
           </div>
         </Router>
