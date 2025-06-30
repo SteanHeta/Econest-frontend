@@ -1,0 +1,62 @@
+# .github/workflows/ci-cd.yml
+
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main  # Trigger CI on pushes to 'main'
+      - dev   # Trigger CI on pushes to 'dev'
+  pull_request:
+    branches:
+      - main
+      - dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Or your project's Node.js version
+          cache: 'npm'
+
+      - name: Install Dependencies
+        working-directory: ./complete # Ensure commands run within your 'complete' folder
+        run: npm install
+
+      - name: Run Tests
+        working-directory: ./complete
+        run: npm test
+
+      - name: Build Project
+        working-directory: ./complete
+        run: npm run build
+
+      - name: Upload Build Artifact # This step makes the 'build' folder available to other jobs
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifact # Name the artifact
+          path: complete/build # Path to your built project (relative to repo root)
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build # This job will only run after the 'build' job successfully completes
+    if: github.ref == 'refs/heads/main' # Only deploy if the push is to the 'main' branch
+
+    steps:
+      - name: Download Build Artifact # Get the artifact from the 'build' job
+        uses: actions/download-artifact@v4
+        with:
+          name: build-artifact
+
+      - name: Deploy to GitHub Pages # Deploy the contents of the artifact
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./ # Artifact contents are at the root of the runner now
+          publish_branch: gh-pages # Target branch for GitHub Pages
