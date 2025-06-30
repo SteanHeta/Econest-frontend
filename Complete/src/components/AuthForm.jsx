@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx'; 
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001'; 
+const API_URL = import.meta.env.VITE_API_URL || 'https://econest-backend-1.onrender.com'; 
 
 const AuthForm = ({ isRegister = false }) => {
     const [username, setUsername] = useState('');

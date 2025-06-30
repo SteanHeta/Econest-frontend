@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:5001/api';
+const API_BASE_URL = 'https://econest-backend-1.onrender.com'; 
 
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
@@ -20,17 +20,17 @@ apiClient.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-export const login = (credentials) => apiClient.post('/auth/login', credentials);
-export const register = (userData) => apiClient.post('/auth/register', userData);
-export const getProfile = () => apiClient.get('/auth/profile');
+export const login = (credentials) => apiClient.post('/api/auth/login', credentials);
+export const register = (userData) => apiClient.post('/api/auth/register', userData);
+export const getProfile = () => apiClient.get('/api/auth/profile');
 
-export const getProducts = () => apiClient.get('/products/');
-export const getBrands = () => apiClient.get('/brands/');
+export const getProducts = () => apiClient.get('/api/products/');
+export const getBrands = () => apiClient.get('/api/brands/');
 
-export const getCommunityPosts = () => apiClient.get('/community/posts/');
-export const createCommunityPost = (postData) => apiClient.post('/community/posts/', postData);
+export const getCommunityPosts = () => apiClient.get('/api/community/posts/');
+export const createCommunityPost = (postData) => apiClient.post('/api/community/posts/', postData);
 
-export const getFeaturedProducts = () => apiClient.get('/home/featured-products');
-export const getLatestPosts = () => apiClient.get('/home/latest-posts');
+export const getFeaturedProducts = () => apiClient.get('/api/home/featured-products');
+export const getLatestPosts = () => apiClient.get('/api/home/latest-posts');
 
 export default apiClient;

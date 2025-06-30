@@ -37,13 +37,11 @@ const BrandsPage = () => {
     return (
         <div className="bg-gray-50/70">
             <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-                {/* Header Section */}
                 <div className="text-center">
                     <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">Sustainable Brands</h1>
                     <p className="mt-6 max-w-3xl mx-auto text-lg leading-8 text-gray-600">Discover brands that are committed to environmental responsibility, ethical practices, and sustainable innovation. Each brand is verified for their certifications and sustainability practices.</p>
                 </div>
 
-                {/* Stats Section */}
                 <div className="mt-16 grid grid-cols-2 gap-8 md:grid-cols-4">
                     {stats.map((stat) => (
                         <div key={stat.label} className="flex flex-col items-center justify-center rounded-xl border border-gray-200 bg-white p-8 shadow-sm">
@@ -53,7 +51,6 @@ const BrandsPage = () => {
                     ))}
                 </div>
 
-                {/* Brands List */}
                 {error ? (
                     <ErrorMessage message={error} />
                 ) : (
@@ -64,7 +61,6 @@ const BrandsPage = () => {
                     </div>
                 )}
 
-                {/* Join Network CTA Section - ADDED */}
                 <div className="mt-24 rounded-lg bg-green-100/50 p-8 text-center">
                     <h2 className="text-3xl font-bold tracking-tight text-gray-900">Join Our Brand Network</h2>
                     <p className="mt-4 max-w-2xl mx-auto text-lg leading-8 text-gray-600">
